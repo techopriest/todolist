@@ -1,4 +1,4 @@
-import  {create, State, StateCreator} from "zustand";
+import  {create, StateCreator} from "zustand";
 import { devtools} from 'zustand/middleware'
 
 import { generateId } from "../helpers";
@@ -20,7 +20,7 @@ function isToDoStore(object: any): object is ToDoStore {
     return 'tasks' in object;
 }
 
-const localStorageUpdate = <T extends State>(config: StateCreator<T>):
+const localStorageUpdate = <T extends unknown>(config: StateCreator<T>):
 StateCreator<T> => (set, get, api) => config((nextState, ...args) => {
     if (isToDoStore(nextState)) {
     window.localStorage.setItem('tasks', JSON.stringify(

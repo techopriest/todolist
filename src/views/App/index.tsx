@@ -23,7 +23,7 @@ export const App: React.FC = () => {
 
     return (
         <article className={styles.article}>
-            <h1 className={styles.articleTitle}>To Do App</h1>
+            <h1 className={styles.articleTitle}>Task active now: {tasks.length}</h1>
             <section className={styles.articleSelection}>
                 <InputPlus
                     onAdd = {(title) => {
