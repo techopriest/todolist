@@ -2,15 +2,28 @@
     display: grid;
     grid-template-columns: 1fr 50px 50px;
     margin-bottom: 15px;
-    background: #edebeb;
     border-radius:  5px;
     padding-right: 10px;
+    background: #edebeb;
 
     &Label {
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
         padding: 12px 15px;
+
+        // &Done{
+        //     background: lightgreen;
+        // }
+    }
+
+    &LabelDone {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 12px 15px;
+        background: lightgreen;
+ 
     }
 
     &EditTitle{
@@ -21,7 +34,7 @@
         box-shadow: 0 4px 0 -3px #3F72AF;
     }
 
-    &Edit, &Remove, &Save{
+    &Edit, &Remove, &Save, &Done{
         display: block;
         border: none;
         background: none no-repeat center center;
@@ -46,13 +59,19 @@
         background-image: url('./images/check.svg');
     }
 
-    &Chechbox{
+    &Checkbox{
         width: 20px;
         height: 20px;
     }
+    
+    // &Done{
+    //     background: lightgreen;
+    // }
 
     &Title{
         padding: 5px;
         line-height: 1.2;
     }
+
 }
+

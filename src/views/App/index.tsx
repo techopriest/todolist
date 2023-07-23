@@ -1,7 +1,7 @@
-import React, { startTransition } from "react";
+import React from "react";
 
 import { useToDoStore } from "../../data/stores/useToDoStore";
-import { InputPlus } from "../components/InputPlus/index";
+import { InputPlus } from "../components/InputPlus";
 import { InputTask } from "../components/InputTask";
 
 import styles from './index.module.scss';
@@ -12,18 +12,20 @@ export const App: React.FC = () => {
         createTask,
         updateTask,
         removeTask,
+        closeTask,
     ] = useToDoStore(state => [
         state.tasks,
         state.createTask,
         state.updateTask,
         state.removeTask,
+        state.closeTask
     ]);
 
 
 
     return (
         <article className={styles.article}>
-            <h1 className={styles.articleTitle}>Task active now: {tasks.length}</h1>
+            <h1 className={styles.articleTitle}>Task active now: {(tasks.filter(task => task.onDoneMark === false )).length}</h1>
             <section className={styles.articleSelection}>
                 <InputPlus
                     onAdd = {(title) => {
@@ -39,10 +41,11 @@ export const App: React.FC = () => {
                 )}
                 {tasks.map((task) => (
                     <InputTask
-                        key={task.id}
+                        key = {task.id}
                         id = {task.id}
-                        title={task.title}
-                        onDone = {removeTask}
+                        title ={ task.title}
+                        onDoneMark = {task.onDoneMark}
+                        onDone = {closeTask}
                         onEdited = {updateTask}
                         onRemoved = {removeTask}
                     />

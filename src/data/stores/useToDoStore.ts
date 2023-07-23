@@ -6,6 +6,7 @@ import { generateId } from "../helpers";
 interface Task {
     id: string,
     title: string,
+    onDoneMark: boolean,
     createdAt: number,
 }
 
@@ -14,6 +15,7 @@ interface ToDoStore{
     createTask: (title: string) => void;
     updateTask: (id: string, title: string) => void;
     removeTask: (id: string) => void;
+    closeTask: (id: string, onDone: boolean) => void;
 }
 
 function isToDoStore(object: any): object is ToDoStore {
@@ -48,6 +50,7 @@ export const useToDoStore = create<ToDoStore>()(devtools(localStorageUpdate((set
         const newTask = {
             id: generateId(),
             title,
+            onDoneMark: false,
             createdAt: Date.now(),
         }
         set({
@@ -70,4 +73,14 @@ export const useToDoStore = create<ToDoStore>()(devtools(localStorageUpdate((set
             tasks: tasks.filter((task) => task.id !== id)
         });
     },
+
+    closeTask: (id: string, onDone: boolean) => {
+        const { tasks } = get();
+        set({
+            tasks: tasks.map((task) => ({
+                ...task,
+                onDoneMark: task.id === id ? onDone : task.onDoneMark,
+            }))
+        });
+    }
 }))));

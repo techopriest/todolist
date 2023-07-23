@@ -5,7 +5,8 @@ import styles from './index.module.scss';
 interface InputTaskProps {
     id: string;
     title: string;
-    onDone: (title: string) => void;
+    onDoneMark: boolean;
+    onDone: (id: string, onDoneMark: boolean) => void;
     onEdited: (id: string, value: string) => void;
     onRemoved: (id: string) => void;
 }
@@ -13,12 +14,13 @@ interface InputTaskProps {
 export const InputTask: React.FC<InputTaskProps> = ({
     id,
     title,
+    onDoneMark,
     onDone,
     onEdited,
     onRemoved
 }) => {
 
-    const [checked, setChecked] = useState(false);
+    //const [isDone, setChecked] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
     const [value, setValue] = useState(title);
     const editTitelInputRef = useRef<HTMLInputElement>(null);
@@ -31,18 +33,16 @@ export const InputTask: React.FC<InputTaskProps> = ({
 
     return (
         <div className={styles.inputTask}>
-            <label className={styles.inputTaskLabel}>
+            <label className={onDoneMark ? styles.inputTaskLabelDone : styles.inputTaskLabel}>
                 <input
                     type="checkbox"
-                    disabled = {isEditMode}
-                    checked={checked}
-                    className={styles.inputTaskChechbox}
+                    disabled = {isEditMode || onDoneMark}
+                    checked={onDoneMark}
+                    className={styles.inputTaskCheckbox}
+                    name={id}
                     onChange={(evt) => {
-                        setChecked(evt.target.checked);
-
-                        if (evt.target.checked) {
-                            onDone(id);
-                        }
+                        //setChecked(evt.target.checked);
+                        onDone(id, evt.target.checked);
                     }}
                 />
                 { isEditMode ? (
@@ -75,6 +75,7 @@ export const InputTask: React.FC<InputTaskProps> = ({
                 />
                 ) : (
             <button
+                disabled = {onDoneMark}
                 aria-label="Edit"
                 className={styles.inputTaskEdit}
                 onClick={() => {
