@@ -1,29 +1,27 @@
 .inputTask {
     display: grid;
     grid-template-columns: 1fr 50px 50px;
+    background: #edebeb;
     margin-bottom: 15px;
     border-radius:  5px;
     padding-right: 10px;
-    background: #edebeb;
+    
 
     &Label {
+        
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
         padding: 12px 15px;
-
-        // &Done{
-        //     background: lightgreen;
-        // }
     }
 
     &LabelDone {
         display: grid;
+        border-radius:  5px;
+        background: lightgreen;
         grid-template-columns: auto 1fr;
         align-items: center;
         padding: 12px 15px;
-        background: lightgreen;
- 
     }
 
     &EditTitle{
@@ -63,10 +61,6 @@
         width: 20px;
         height: 20px;
     }
-    
-    // &Done{
-    //     background: lightgreen;
-    // }
 
     &Title{
         padding: 5px;
