@@ -6,6 +6,7 @@ import { generateId } from "../helpers";
 interface Task {
     id: string,
     title: string,
+    dataTime: string,
     onDoneMark: boolean,
     createdAt: number,
 }
@@ -50,6 +51,7 @@ export const useToDoStore = create<ToDoStore>()(devtools(localStorageUpdate((set
         const newTask = {
             id: generateId(),
             title,
+            dataTime: new Date();
             onDoneMark: false,
             createdAt: Date.now(),
         }

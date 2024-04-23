@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import styles from './index.module.scss';
-
+// СДЕЛАТЬ ДАТУ И ВРЕМЯ У ЗАДАЧИ
 interface InputTaskProps {
     id: string;
     title: string;
+    dataTime: string;
     onDoneMark: boolean;
+
     onDone: (id: string, onDoneMark: boolean) => void;
     onEdited: (id: string, value: string) => void;
     onRemoved: (id: string) => void;
@@ -14,6 +16,7 @@ interface InputTaskProps {
 export const InputTask: React.FC<InputTaskProps> = ({
     id,
     title,
+    dataTime,
     onDoneMark,
     onDone,
     onEdited,
