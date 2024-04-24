@@ -6,11 +6,21 @@
     border-radius:  5px;
     padding-right: 10px;
     
+    
+    &DateTime{
+        display: grid;
+        grid-auto-columns: min-content;
+        grid-auto-flow: column;
+        align-items: center;
+        padding: 12px 15px;
+    }
 
     &Label {
         
         display: grid;
         grid-template-columns: auto 1fr;
+        grid-auto-columns: min-content;
+        grid-auto-flow: column;
         align-items: center;
         padding: 12px 15px;
     }
@@ -20,6 +30,8 @@
         border-radius:  5px;
         background: lightgreen;
         grid-template-columns: auto 1fr;
+        grid-auto-columns: min-content;
+        grid-auto-flow: column;
         align-items: center;
         padding: 12px 15px;
     }
@@ -31,6 +43,8 @@
         background: none;
         box-shadow: 0 4px 0 -3px #3F72AF;
     }
+
+    
 
     &Edit, &Remove, &Save, &Done{
         display: block;

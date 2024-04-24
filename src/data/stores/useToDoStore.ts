@@ -3,12 +3,14 @@ import { devtools} from 'zustand/middleware'
 
 import { generateId } from "../helpers";
 
+const DATE_TIME_FORMAT = 'DD-MM-YYYY DDTHH:mm';
+
 interface Task {
     id: string,
     title: string,
     dataTime: string,
     onDoneMark: boolean,
-    createdAt: number,
+    createdAt: string,
 }
 
 interface ToDoStore{
@@ -23,7 +25,7 @@ function isToDoStore(object: any): object is ToDoStore {
     return 'tasks' in object;
 }
 
-const localStorageUpdate = <T extends unknown>(config: StateCreator<T>):
+const localStorageUpdate = <T>(config: StateCreator<T>):
 StateCreator<T> => (set, get, api) => config((nextState, ...args) => {
     if (isToDoStore(nextState)) {
     window.localStorage.setItem('tasks', JSON.stringify(
@@ -53,7 +55,7 @@ export const useToDoStore = create<ToDoStore>()(devtools(localStorageUpdate((set
             title,
             dataTime: new Date();
             onDoneMark: false,
-            createdAt: Date.now(),
+            createdAt: new Date().toLocaleTimeString('ru-RU', { timeZone: 'Asia/Vladivostok' }),
         }
         set({
             tasks: [newTask].concat(tasks)

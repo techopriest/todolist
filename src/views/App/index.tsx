@@ -44,7 +44,7 @@ export const App: React.FC = () => {
                         key = {task.id}
                         id = {task.id}
                         title ={ task.title}
-                        dataTime={task.dataTime}
+                        dateTime = {task.createdAt}
                         onDoneMark = {task.onDoneMark}
                         onDone = {closeTask}
                         onEdited = {updateTask}

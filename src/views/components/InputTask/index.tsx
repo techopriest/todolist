@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 interface InputTaskProps {
     id: string;
     title: string;
-    dataTime: string;
+    dateTime: string;
     onDoneMark: boolean;
 
     onDone: (id: string, onDoneMark: boolean) => void;
@@ -16,7 +16,7 @@ interface InputTaskProps {
 export const InputTask: React.FC<InputTaskProps> = ({
     id,
     title,
-    dataTime,
+    dateTime,
     onDoneMark,
     onDone,
     onEdited,
@@ -64,6 +64,11 @@ export const InputTask: React.FC<InputTaskProps> = ({
                 ) : (
                 <h3 className={styles.inputTaskTitle}>{title}</h3>
                 )}
+
+                <label className={styles.inputTaskDateTime}>
+                    {dateTime}
+                </label>
+
                 </label>
                 { isEditMode ? ( // сохранение отредактированной задачи
                     <button
