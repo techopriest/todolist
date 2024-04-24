@@ -20,7 +20,6 @@ export const InputTask: React.FC<InputTaskProps> = ({
     onRemoved
 }) => {
 
-    //const [isDone, setChecked] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
     const [value, setValue] = useState(title);
     const editTitelInputRef = useRef<HTMLInputElement>(null);
@@ -41,11 +40,10 @@ export const InputTask: React.FC<InputTaskProps> = ({
                     className={styles.inputTaskCheckbox}
                     name={id}
                     onChange={(evt) => {
-                        //setChecked(evt.target.checked);
                         onDone(id, evt.target.checked);
                     }}
                 />
-                { isEditMode ? (
+                { isEditMode ? ( //вход в режим редактирования
                     <input
                         value={value}
                         ref = {editTitelInputRef}
@@ -64,7 +62,7 @@ export const InputTask: React.FC<InputTaskProps> = ({
                 <h3 className={styles.inputTaskTitle}>{title}</h3>
                 )}
                 </label>
-                { isEditMode ? (
+                { isEditMode ? ( // сохранение отредактированной задачи
                     <button
                     aria-label="Save"
                     className={styles.inputTaskSave}
