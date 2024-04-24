@@ -53,7 +53,6 @@ export const useToDoStore = create<ToDoStore>()(devtools(localStorageUpdate((set
         const newTask = {
             id: generateId(),
             title,
-            dataTime: new Date();
             onDoneMark: false,
             createdAt: new Date().toLocaleTimeString('ru-RU', { timeZone: 'Asia/Vladivostok' }),
         }
